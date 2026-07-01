@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Ecommerce_PowerBI_Dashboard_Reports"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ec8df894-2a98-425f-8663-5e6f6bab8fe4"
+  }
+}

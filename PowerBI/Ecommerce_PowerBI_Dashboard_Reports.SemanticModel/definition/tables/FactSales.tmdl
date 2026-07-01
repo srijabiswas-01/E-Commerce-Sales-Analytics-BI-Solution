@@ -1,0 +1,174 @@
+table FactSales
+	lineageTag: 49415b2d-1a6c-4f0a-ac3f-dd6165f41523
+
+	measure 'Total Revenue' = SUM(FactSales[NetSales])
+		lineageTag: 64bfa9ce-3993-4d07-89a3-34796e20b9ef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Orders' = COUNT(FactSales[OrderID])
+		formatString: 0
+		lineageTag: 39f5ba8f-ec98-4ea8-b8ee-fccdc3eda940
+
+	measure 'Average Order Value' = AVERAGE(FactSales[NetSales])
+		lineageTag: e7dc8157-44a5-4e44-a645-4be6444a831b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Products Sold' = SUM(FactSales[Quantity])
+		formatString: 0
+		lineageTag: 0ad8ebe1-8a0c-4d92-b569-4d496a68443d
+
+	measure 'Total Customers' = DISTINCTCOUNT(FactSales[CustomerKey])
+		formatString: 0
+		lineageTag: 0392692d-86b1-48f4-8f08-82ea5b8edc14
+
+	column SalesKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 07d87ca6-4770-479a-8cd2-56eacf8049ea
+		summarizeBy: count
+		sourceColumn: SalesKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: c3a8c7f6-9027-4636-8392-d8c8ce8913bf
+		summarizeBy: count
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 875f88e4-d58c-4ca2-ba22-5df721908543
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 4dae5628-b3b7-4c74-82a1-a95e686f2471
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a388372-d881-4432-b0c6-be1c516de084
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a8ecb31-4834-43fd-9ebe-5413f7a9aebb
+		summarizeBy: none
+		sourceColumn: PaymentKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: c4847ef5-86fd-4ea6-a822-c13921dcdac2
+		summarizeBy: count
+		sourceColumn: LocationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a5b68c7-fb31-4129-86e6-66ef2b6c2e11
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: double
+		lineageTag: b64372ca-27e5-4734-91f7-46d99cb9c66a
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Discount
+		dataType: double
+		lineageTag: 1e0c1c39-e731-4675-8445-975a53907bed
+		summarizeBy: sum
+		sourceColumn: Discount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GrossSales
+		dataType: double
+		lineageTag: 869ebe10-3e4e-422d-a232-e0012344d20b
+		summarizeBy: sum
+		sourceColumn: GrossSales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DiscountAmount
+		dataType: double
+		lineageTag: 28eabdc3-055e-4448-9973-3a278c27198d
+		summarizeBy: sum
+		sourceColumn: DiscountAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NetSales
+		dataType: double
+		lineageTag: dc9d6949-845a-401c-b071-f2c678b93aa9
+		summarizeBy: sum
+		sourceColumn: NetSales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CreatedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e7e7308a-fb16-4990-a1d4-426524a6f783
+		summarizeBy: none
+		sourceColumn: CreatedDate
+
+		variation Variation
+			isDefault
+			relationship: 2bdc4531-4dca-4dd9-a912-1124ceadc00c
+			defaultHierarchy: LocalDateTable_58e4b3e5-6337-456f-9db5-2ff719f90156.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactSales = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-LKG494E", "Ecommerce_DW"),
+				    dbo_FactSales = Source{[Schema="dbo",Item="FactSales"]}[Data]
+				in
+				    dbo_FactSales
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

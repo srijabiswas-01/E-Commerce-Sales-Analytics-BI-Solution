@@ -1,0 +1,33 @@
+table DimPayment
+	lineageTag: b5b833db-4c7a-42c8-87b3-68cb8c304fb1
+
+	column PaymentKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 5fff83d4-08ee-4dd2-b090-b342ca04c2a2
+		summarizeBy: none
+		sourceColumn: PaymentKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentMethod
+		dataType: string
+		lineageTag: e0632351-52e5-4baa-833e-36611ed0401a
+		summarizeBy: none
+		sourceColumn: PaymentMethod
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimPayment = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-LKG494E", "Ecommerce_DW"),
+				    dbo_DimPayment = Source{[Schema="dbo",Item="DimPayment"]}[Data]
+				in
+				    dbo_DimPayment
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

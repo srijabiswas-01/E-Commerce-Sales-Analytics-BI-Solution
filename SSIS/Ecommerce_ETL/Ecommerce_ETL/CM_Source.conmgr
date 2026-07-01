@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="CM_Source"
+  DTS:DTSID="{3DD400A7-9E72-45D6-8F29-BD83DB0034B7}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=DESKTOP-LKG494E;Initial Catalog=Ecommerce_Source;Provider=MSOLEDBSQL.1;Persist Security Info=False;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{3DD400A7-9E72-45D6-8F29-BD83DB0034B7}DESKTOP-LKG494E.Ecommerce_Source;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

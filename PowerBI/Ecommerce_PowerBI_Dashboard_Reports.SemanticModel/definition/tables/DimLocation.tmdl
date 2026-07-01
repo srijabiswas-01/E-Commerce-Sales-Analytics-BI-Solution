@@ -1,0 +1,47 @@
+table DimLocation
+	lineageTag: 319c2bf1-0293-4e69-a7a9-168ccbc1470e
+
+	column LocationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f01a2b75-067c-4f74-91d9-f2eb7e5aa5b0
+		summarizeBy: none
+		sourceColumn: LocationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: ac6f4d3a-567f-40c8-9fb0-121c8c5fd2e2
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 8e12e3d2-4bac-401a-88a1-9300455b8118
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 493edb26-8f68-484b-b764-2b212f010f9d
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimLocation = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-LKG494E", "Ecommerce_DW"),
+				    dbo_DimLocation = Source{[Schema="dbo",Item="DimLocation"]}[Data]
+				in
+				    dbo_DimLocation
+
+	annotation PBI_ResultType = Table
+

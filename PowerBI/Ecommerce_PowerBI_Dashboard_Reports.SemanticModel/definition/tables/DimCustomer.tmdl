@@ -1,0 +1,81 @@
+table DimCustomer
+	lineageTag: 5b480dcb-2283-4403-aecc-85eee2746f72
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 613af342-5738-437e-81cf-293d2674bf60
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerID
+		dataType: string
+		lineageTag: f7207fc3-bc09-4f3c-8184-ac3f8a4f0d56
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: 3997c26e-64d9-46c9-a41c-37b83f235291
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: a2782ade-3d68-403a-8c2b-7c4018a98aec
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 3911055d-bc43-4c58-97f2-e5fe58c06fd1
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegistrationDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8eeb691a-4f9a-493b-b4a6-ae9d24d0cfc2
+		summarizeBy: none
+		sourceColumn: RegistrationDate
+
+		variation Variation
+			isDefault
+			relationship: 15503314-624e-40a0-b935-670e89b6b707
+			defaultHierarchy: LocalDateTable_2fabe0cb-5e64-4db2-b05e-c597f7b70066.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column LocationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b6667cc0-9441-4ac6-8242-dde17ea71087
+		summarizeBy: none
+		sourceColumn: LocationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCustomer = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-LKG494E", "Ecommerce_DW"),
+				    dbo_DimCustomer = Source{[Schema="dbo",Item="DimCustomer"]}[Data]
+				in
+				    dbo_DimCustomer
+
+	annotation PBI_ResultType = Table
+

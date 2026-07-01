@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="CM_Orders_SQL"
+  DTS:DTSID="{C53F4ED9-2A8E-410E-9941-86EDA9BEE551}"
+  DTS:CreationName="FILE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="C:\Users\User\Downloads\ETL Using SSMS and SSIS and SSRS\Orders.sql" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

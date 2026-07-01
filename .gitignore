@@ -1,0 +1,20 @@
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+# Visual Studio
+.vs/
+bin/
+obj/
+
+# SSIS build files
+*.ispac
+
+# Temporary files
+*.tmp
+*.log
+
+# Video files
+*.mp4
+
+# User files
+*.user
+*.suo

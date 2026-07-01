@@ -1,0 +1,102 @@
+table DimProduct
+	lineageTag: 6eca3eee-b397-4403-ba63-155e3601e2ec
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: efe3fa08-cab0-4a75-812e-c1b0942d54f1
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: string
+		lineageTag: 9bfaa136-1621-4d63-ac8f-8c94f18bf82f
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: df1366fe-b150-4139-abd0-5fd7f152b3e8
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 12ef0303-9fd1-4702-883f-cee2f8b5c202
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubCategory
+		dataType: string
+		lineageTag: c884484e-a98c-428b-b58f-249e1d831ba5
+		summarizeBy: none
+		sourceColumn: SubCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 0f02840d-8e74-4e19-bf8a-63cb64e2a5b6
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Supplier
+		dataType: string
+		lineageTag: e90570d4-9f70-432d-85ee-173a71d4564f
+		summarizeBy: none
+		sourceColumn: Supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column CostPrice
+		dataType: double
+		lineageTag: 86842dc3-f030-470d-8f55-915003be941d
+		summarizeBy: none
+		sourceColumn: CostPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SellingPrice
+		dataType: double
+		lineageTag: 079fdb49-3ae3-4f04-9020-e3d66381f2e3
+		summarizeBy: none
+		sourceColumn: SellingPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column StockQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 783164fe-7596-497c-a771-6d088a9e4b3c
+		summarizeBy: none
+		sourceColumn: StockQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimProduct = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-LKG494E", "Ecommerce_DW"),
+				    dbo_DimProduct = Source{[Schema="dbo",Item="DimProduct"]}[Data]
+				in
+				    dbo_DimProduct
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

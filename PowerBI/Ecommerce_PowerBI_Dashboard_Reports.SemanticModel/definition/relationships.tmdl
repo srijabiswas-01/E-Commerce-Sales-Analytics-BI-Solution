@@ -1,0 +1,40 @@
+relationship 15503314-624e-40a0-b935-670e89b6b707
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimCustomer.RegistrationDate
+	toColumn: LocalDateTable_2fabe0cb-5e64-4db2-b05e-c597f7b70066.Date
+
+relationship 9529d5f4-764a-421a-8030-ef612b95f2c7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.FullDate
+	toColumn: LocalDateTable_2f873a31-0d6f-42f1-8c45-4d67c03760dc.Date
+
+relationship 2bdc4531-4dca-4dd9-a912-1124ceadc00c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactSales.CreatedDate
+	toColumn: LocalDateTable_58e4b3e5-6337-456f-9db5-2ff719f90156.Date
+
+relationship AutoDetected_156c3dac-0159-4628-ac01-23357ddd8bb0
+	fromColumn: FactSales.CustomerKey
+	toColumn: DimCustomer.CustomerKey
+
+relationship AutoDetected_5fe85b6e-f23d-403c-9ca1-2d9da3b42161
+	fromColumn: DimCustomer.LocationKey
+	toColumn: DimLocation.LocationKey
+
+relationship AutoDetected_c7b2b502-3669-40c6-8835-d0ba447fc9bf
+	isActive: false
+	fromColumn: FactSales.LocationKey
+	toColumn: DimLocation.LocationKey
+
+relationship AutoDetected_bf48e61f-0c79-46ef-9c99-d15480683fca
+	fromColumn: FactSales.DateKey
+	toColumn: DimDate.DateKey
+
+relationship AutoDetected_b9658139-5b47-4379-99db-158e5a251c7c
+	fromColumn: FactSales.PaymentKey
+	toColumn: DimPayment.PaymentKey
+
+relationship AutoDetected_5fd4e0e3-c0c1-4b29-b103-a549f1b22016
+	fromColumn: FactSales.ProductKey
+	toColumn: DimProduct.ProductKey
+
